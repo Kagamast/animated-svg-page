@@ -1,0 +1,84 @@
+@property --mover-left {
+    syntax: '<number>'; /* <- defined as type number for the transition to work */
+    initial-value: 0;
+    inherits: false;
+}
+@property --mover-top {
+    syntax: '<number>'; /* <- defined as type number for the transition to work */
+    initial-value: 0;
+    inherits: false;
+}
+@property --opacity {
+    syntax: '<number>'; /* <- defined as type number for the transition to work */
+    initial-value: 1;
+    inherits: false;
+}
+svg{
+    width: 97vmin;
+
+    --mover-left: 0;
+    --mover-top: 0;
+    --opacity: 1;
+    --animation-duration: 10s;
+    --ru: 1.5%;
+}
+.movin{
+    animation: move var(--animation-duration) ease 0s infinite;
+    transform: translateX(calc(var(--mover-left) * var(--ru)));
+}
+.crate{
+    animation: move var(--animation-duration) ease 0s infinite;
+    transform: translateY(calc(var(--mover-top) * var(--ru)));
+    filter: opacity(var(--opacity));
+}
+.hook{
+    animation: move var(--animation-duration) ease 0s infinite;
+    transform: translateY(calc(var(--mover-top) * var(--ru)));
+}
+.cable1{
+    animation: move var(--animation-duration) ease 0s infinite;
+    transform: translateY(calc(var(--mover-top) * var(--ru)/2));
+}
+
+@keyframes move {
+    0%{
+        --mover-left: -10;
+        --mover-top: 0;
+        --opacity: 0;
+    }
+    30%{
+        --opacity: 0;
+        --mover-top:0;
+        --mover-left: 10;
+    }
+    40%{
+        --opacity:0;
+        --mover-top: 10;
+    }
+    41%{
+        --opacity:1;
+    }
+    50%{
+        --mover-top: 0;
+        --mover-left: 10;
+        --opacity: 1;
+    }
+    80%{
+        --opacity: 1;
+        --mover-left: -10;
+        --mover-top: 0;
+    }
+    90%{
+        --opacity:1;
+        --mover-top: 10;
+    }
+    91%{
+        --opacity:0;
+    }
+
+    100%{
+        --mover-left: -10;
+        --opacity: 0;
+        --mover-top: 0;
+    }
+}
